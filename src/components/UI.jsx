@@ -16,10 +16,10 @@ export function PageIntro({ eyebrow, title, description, action }) {
 
 export function StatCard({ icon: Icon, label, value, detail, color = 'indigo' }) {
   const shades = {
-    indigo: 'from-indigo-500/20 text-indigo-300',
-    cyan: 'from-cyan-500/20 text-cyan-300',
-    emerald: 'from-emerald-500/20 text-emerald-300',
-    amber: 'from-amber-500/20 text-amber-300',
+    primary: 'from-primary/20 text-primary',
+    accent: 'from-accent/20 text-accent',
+    success: 'from-success/20 text-success',
+    warning: 'from-warning/20 text-warning',
   }
   return (
     <motion.div whileHover={{ y: -4 }} className="glass rounded-2xl p-5">
@@ -37,9 +37,9 @@ export function Score({ value }) {
   return (
     <div className="flex items-center gap-3">
       <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-        <motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: .8 }} className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
+        <motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: .8 }} className="h-full rounded-full bg-gradient-to-r from-accent to-primary" />
       </div>
-      <span className="w-10 text-right text-xs font-semibold text-cyan-300">{value}%</span>
+      <span className="w-10 text-right text-xs font-semibold text-accent">{value}%</span>
     </div>
   )
 }
@@ -47,7 +47,7 @@ export function Score({ value }) {
 export function EmptyState({ title = 'Nothing here yet', text = 'Your learning journey is ready when you are.', button }) {
   return (
     <div className="glass flex min-h-72 flex-col items-center justify-center rounded-2xl p-8 text-center">
-      <div className="mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-indigo-500/10 text-indigo-300">
+      <div className="mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-primary/10 text-primary">
         <SearchX size={28} />
       </div>
       <h3 className="text-lg font-semibold">{title}</h3>
@@ -76,7 +76,7 @@ export function ResultCard({ item, index = 0 }) {
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * .1 }} className="glass glass-hover rounded-2xl p-5">
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
-          <span className="mb-2 inline-block rounded-md bg-indigo-500/10 px-2 py-1 text-[11px] font-semibold text-indigo-300">{item.topic}</span>
+          <span className="mb-2 inline-block rounded-md bg-primary/10 px-2 py-1 text-[11px] font-semibold text-primary">{item.topic}</span>
           <h3 className="font-semibold leading-6 text-slate-100">{item.title}</h3>
         </div>
         <ArrowUpRight size={17} className="mt-1 shrink-0 text-slate-500" />

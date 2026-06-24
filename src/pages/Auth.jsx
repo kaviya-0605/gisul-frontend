@@ -7,14 +7,14 @@ import Logo from '../components/Logo'
 
 function AuthVisual({ signup }) {
   return (
-    <div className="grid-noise relative hidden overflow-hidden bg-gradient-to-br from-blue-950 via-indigo-950 to-violet-950 p-12 lg:flex lg:flex-col lg:justify-between">
-      <div className="absolute -left-24 top-1/4 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
-      <div className="absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-violet-500/20 blur-3xl" />
+    <div className="grid-noise relative hidden overflow-hidden bg-gradient-to-br from-background via-card to-background p-12 lg:flex lg:flex-col lg:justify-between">
+      <div className="absolute -left-24 top-1/4 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
+      <div className="absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-secondary/20 blur-3xl" />
       <Logo />
       <div className="relative mx-auto max-w-md">
-        <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity }} className="glass mb-8 rounded-3xl p-7 shadow-2xl">
-          <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-500"><BrainCircuit /></div>
-          <div className="space-y-3">{['Understand every question', 'Find meaningful connections', 'Build lasting knowledge'].map((x, i) => <div key={x} className="flex items-center gap-3 rounded-xl bg-white/[0.04] p-3 text-sm text-slate-300"><span className="grid h-6 w-6 place-items-center rounded-full bg-emerald-500/10 text-emerald-400"><Check size={13} /></span>{x}<span className="ml-auto text-xs text-slate-600">0{i + 1}</span></div>)}</div>
+        <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity }} className="glass mb-8 rounded-3xl p-7 shadow-2xl shadow-primary/10">
+          <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-secondary"><BrainCircuit /></div>
+          <div className="space-y-3">{['Understand every question', 'Find meaningful connections', 'Build lasting knowledge'].map((x, i) => <div key={x} className="flex items-center gap-3 rounded-xl bg-white/[0.04] p-3 text-sm text-textColor/80"><span className="grid h-6 w-6 place-items-center rounded-full bg-success/10 text-success"><Check size={13} /></span>{x}<span className="ml-auto text-xs text-textColor/50">0{i + 1}</span></div>)}</div>
         </motion.div>
         <h1 className="text-4xl font-bold leading-tight">{signup ? 'Turn curiosity into your greatest advantage.' : 'Welcome back to smarter learning.'}</h1>
         <p className="mt-4 leading-7 text-slate-400">One workspace for your questions, connections, and steady progress.</p>
@@ -74,7 +74,7 @@ export default function Auth({ signup = false }) {
           <p className="mt-2 text-sm text-slate-500">{signup ? 'Your AI study companion is ready when you are.' : 'Continue your learning journey where you left off.'}</p>
           
           {errorMsg && (
-            <div className="mt-4 rounded-lg bg-red-500/10 p-3 text-sm text-red-500 border border-red-500/20">
+            <div className="mt-4 rounded-lg bg-error/10 p-3 text-sm text-error border border-error/20">
               {errorMsg}
             </div>
           )}
@@ -85,13 +85,13 @@ export default function Auth({ signup = false }) {
             <div>
               <label className="label">Password</label>
               <div className="relative"><LockKeyhole size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input required value={password} onChange={e => setPassword(e.target.value)} type={show ? 'text' : 'password'} className="input !px-10" placeholder="Enter your password" /><button type="button" onClick={() => setShow(!show)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500">{show ? <EyeOff size={17} /> : <Eye size={17} />}</button></div>
-              {signup && <div className="mt-3"><div className="flex gap-1.5">{[1,2,3,4].map(x => <span key={x} className={`h-1 flex-1 rounded-full ${x <= strength ? ['bg-red-400','bg-amber-400','bg-cyan-400','bg-emerald-400'][strength - 1] : 'bg-white/10'}`} />)}</div><p className="mt-2 text-[11px] text-slate-500">Use 8+ characters, a number, and a symbol.</p></div>}
+              {signup && <div className="mt-3"><div className="flex gap-1.5">{[1,2,3,4].map(x => <span key={x} className={`h-1 flex-1 rounded-full ${x <= strength ? ['bg-error','bg-warning','bg-accent','bg-success'][strength - 1] : 'bg-white/10'}`} />)}</div><p className="mt-2 text-[11px] text-slate-500">Use 8+ characters, a number, and a symbol.</p></div>}
             </div>
             {signup && <div><label className="label">Confirm password</label><input required type={show ? 'text' : 'password'} className="input" placeholder="Repeat your password" /></div>}
-            {!signup && <div className="flex items-center justify-between text-xs"><label className="flex items-center gap-2 text-slate-400"><input type="checkbox" className="accent-indigo-500" />Remember me</label><a href="#" className="font-medium text-indigo-400 hover:text-indigo-300">Forgot password?</a></div>}
+            {!signup && <div className="flex items-center justify-between text-xs"><label className="flex items-center gap-2 text-slate-400"><input type="checkbox" className="accent-primary" />Remember me</label><a href="#" className="font-medium text-primary hover:text-primary/80">Forgot password?</a></div>}
             <button disabled={isSubmitting} className="button-primary w-full !py-3.5 disabled:opacity-50">{isSubmitting ? 'Please wait...' : (signup ? 'Create free account' : 'Log in')}<ArrowRight size={17} /></button>
           </form>
-          <p className="mt-7 text-center text-sm text-slate-500">{signup ? 'Already have an account?' : 'New to StudySync?'} <Link to={signup ? '/login' : '/signup'} className="font-semibold text-indigo-400 hover:text-indigo-300">{signup ? 'Log in' : 'Create an account'}</Link></p>
+          <p className="mt-7 text-center text-sm text-slate-500">{signup ? 'Already have an account?' : 'New to StudySync?'} <Link to={signup ? '/login' : '/signup'} className="font-semibold text-primary hover:text-primary/80">{signup ? 'Log in' : 'Create an account'}</Link></p>
         </motion.div>
       </div>
     </div>

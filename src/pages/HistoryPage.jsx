@@ -1,51 +1,3 @@
-// import { CalendarDays, ChevronLeft, ChevronRight, Filter, Search, SlidersHorizontal } from 'lucide-react'
-// import { useMemo, useState } from 'react'
-// import { Link } from 'react-router-dom'
-// import { PageIntro, Score } from '../components/UI'
-// import { historyItems } from '../data'
-
-// const topics = ['All topics', 'Biology', 'Physics', 'Chemistry', 'Mathematics', 'Computer Science']
-
-// export default function HistoryPage() {
-//   const [query, setQuery] = useState('')
-//   const [topic, setTopic] = useState('All topics')
-//   const [sort, setSort] = useState('Newest first')
-//   const results = useMemo(() => historyItems.filter(x => (topic === 'All topics' || x.topic === topic) && x.question.toLowerCase().includes(query.toLowerCase())).sort((a,b) => sort === 'Highest match' ? b.score - a.score : a.id - b.id), [query, topic, sort])
-//   return (
-//     <>
-//       <PageIntro eyebrow="Your knowledge trail" title="Question history" description="Search, filter, and revisit every concept you’ve explored." />
-//       <section className="glass mb-5 rounded-2xl p-4">
-//         <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto]">
-//           <div className="relative"><Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input value={query} onChange={e => setQuery(e.target.value)} className="input !pl-10" placeholder="Search your questions..." /></div>
-//           <div className="relative"><Filter size={15} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><select value={topic} onChange={e => setTopic(e.target.value)} className="input min-w-44 appearance-none !pl-10">{topics.map(x => <option className="bg-slate-900" key={x}>{x}</option>)}</select></div>
-//           <div className="relative"><SlidersHorizontal size={15} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><select value={sort} onChange={e => setSort(e.target.value)} className="input min-w-40 appearance-none !pl-10"><option className="bg-slate-900">Newest first</option><option className="bg-slate-900">Highest match</option></select></div>
-//           <button className="button-secondary"><CalendarDays size={16} />This month</button>
-//         </div>
-//       </section>
-//       <div className="mb-4 flex items-center justify-between"><p className="text-xs text-slate-500">{results.length} questions found</p><button onClick={() => { setQuery(''); setTopic('All topics') }} className="text-xs font-medium text-indigo-400">Reset filters</button></div>
-//       <div className="space-y-3">
-//         {results.map(item => <Link to={`/question/${item.id}`} key={item.id} className="glass glass-hover block rounded-2xl p-5">
-//           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-//             <div className="min-w-0 flex-1"><div className="mb-2 flex items-center gap-2"><span className="rounded-md bg-indigo-500/10 px-2 py-1 text-[10px] font-semibold text-indigo-300">{item.topic}</span><span className="text-[11px] text-slate-600">{item.date}</span></div><h3 className="font-medium leading-6">{item.question}</h3></div>
-//             <div className="w-full sm:w-44"><p className="mb-2 text-[10px] uppercase tracking-wider text-slate-600">Best similarity</p><Score value={item.score} /></div>
-//           </div>
-//         </Link>)}
-//         {!results.length && <div className="glass rounded-2xl py-16 text-center"><Search className="mx-auto text-slate-700" /><p className="mt-4 font-medium">No questions found</p><p className="mt-1 text-sm text-slate-500">Try a different search or topic.</p></div>}
-//       </div>
-//       <div className="mt-6 flex items-center justify-between"><p className="text-xs text-slate-600">Showing 1–{results.length} of {results.length}</p><div className="flex gap-2"><button className="button-secondary !p-2.5 opacity-40"><ChevronLeft size={16} /></button><button className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-500 text-sm font-semibold">1</button><button className="button-secondary !p-2.5 opacity-40"><ChevronRight size={16} /></button></div></div>
-//     </>
-//   )
-// }
-
-
-
-
-
-
-
-
-
-
 import {
   CalendarDays,
   ChevronLeft,
@@ -191,7 +143,7 @@ export default function HistoryPage() {
             setQuery("");
             setTopic("All topics");
           }}
-          className="text-xs font-medium text-indigo-400"
+          className="text-xs font-medium text-primary"
         >
           Reset filters
         </button>
@@ -206,7 +158,7 @@ export default function HistoryPage() {
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <div className="mb-2 flex items-center gap-2">
-                  <span className="rounded-md bg-indigo-500/10 px-2 py-1 text-[10px] font-semibold text-indigo-300">
+                  <span className="rounded-md bg-primary/10 px-2 py-1 text-[10px] font-semibold text-primary">
                     {item.topic}
                   </span>
 
@@ -258,7 +210,7 @@ export default function HistoryPage() {
             <ChevronLeft size={16} />
           </button>
 
-          <button className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-500 text-sm font-semibold">
+          <button className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-textColor text-sm font-semibold">
             1
           </button>
 
