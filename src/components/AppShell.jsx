@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Bell, ChevronLeft, ChevronRight, CircleHelp, History, LayoutDashboard, LogOut, Menu, Search, UserRound, WandSparkles, X } from 'lucide-react'
 import { useState } from 'react'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import Logo from './Logo'
 
 const nav = [
@@ -15,6 +16,14 @@ export default function AppShell() {
   const [collapsed, setCollapsed] = useState(false)
   const [mobile, setMobile] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
+  
+  const handleLogout = (e) => {
+    e.preventDefault()
+    logout()
+    navigate('/login')
+  }
   const sidebar = (
     <div className="flex h-full flex-col">
       <div className="flex h-20 items-center justify-between px-4">
@@ -40,9 +49,9 @@ export default function AppShell() {
             <p className="mt-1 text-[11px] leading-5 text-slate-500">Explore examples in the question finder.</p>
           </div>
         )}
-        <Link to="/" className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-slate-500 transition hover:bg-red-500/10 hover:text-red-300 ${collapsed ? 'justify-center' : ''}`}>
+        <button onClick={handleLogout} className={`w-full flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-slate-500 transition hover:bg-red-500/10 hover:text-red-300 ${collapsed ? 'justify-center' : ''}`}>
           <LogOut size={19} />{!collapsed && 'Log out'}
-        </Link>
+        </button>
         <button onClick={() => setCollapsed(!collapsed)} className="mt-2 hidden w-full items-center justify-center rounded-xl border border-white/[0.06] py-2 text-slate-500 transition hover:text-white lg:flex">
           {collapsed ? <ChevronRight size={17} /> : <ChevronLeft size={17} />}
         </button>
@@ -65,8 +74,13 @@ export default function AppShell() {
           <div className="ml-auto flex items-center gap-3">
             <button className="relative rounded-xl border border-white/[0.08] bg-white/[0.04] p-2.5 text-slate-400 hover:text-white"><Bell size={18} /><span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-indigo-400" /></button>
             <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-600 text-sm font-bold">AK</div>
-              <div className="hidden sm:block"><p className="text-sm font-semibold">Alex Kim</p><p className="text-[11px] text-slate-500">Student</p></div>
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-600 text-sm font-bold">
+                {user?.name ? user.name.substring(0, 2).toUpperCase() : 'AK'}
+              </div>
+              <div className="hidden sm:block">
+                <p className="text-sm font-semibold">{user?.name || 'Alex Kim'}</p>
+                <p className="text-[11px] text-slate-500">{user?.email || 'Student'}</p>
+              </div>
             </div>
           </div>
         </header>

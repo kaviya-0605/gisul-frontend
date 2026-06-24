@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, BrainCircuit, Check, Eye, EyeOff, LockKeyhole, Mail, Sparkles, UserRound } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import Logo from '../components/Logo'
 
 function AuthVisual({ signup }) {
@@ -26,9 +27,41 @@ function AuthVisual({ signup }) {
 export default function Auth({ signup = false }) {
   const [show, setShow] = useState(false)
   const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  
   const navigate = useNavigate()
+  const { login, signup: register } = useAuth()
+  
   const strength = Math.min(4, [password.length > 7, /[A-Z]/.test(password), /\d/.test(password), /[^A-Za-z0-9]/.test(password)].filter(Boolean).length)
-  const submit = e => { e.preventDefault(); navigate('/dashboard') }
+  
+  const submit = async e => { 
+    e.preventDefault(); 
+    setErrorMsg('');
+    setIsSubmitting(true);
+    
+    let result;
+    if (signup) {
+      if (strength < 3) {
+        setErrorMsg('Please choose a stronger password.');
+        setIsSubmitting(false);
+        return;
+      }
+      result = await register(name, email, password);
+    } else {
+      result = await login(email, password);
+    }
+    
+    setIsSubmitting(false);
+    
+    if (result.success) {
+      navigate('/dashboard');
+    } else {
+      setErrorMsg(result.error);
+    }
+  }
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
       <AuthVisual signup={signup} />
@@ -39,9 +72,16 @@ export default function Auth({ signup = false }) {
           <span className="eyebrow mb-4"><Sparkles size={13} />{signup ? 'Create your workspace' : 'Welcome back'}</span>
           <h2 className="text-3xl font-bold tracking-tight">{signup ? 'Start learning smarter' : 'Log in to StudySync'}</h2>
           <p className="mt-2 text-sm text-slate-500">{signup ? 'Your AI study companion is ready when you are.' : 'Continue your learning journey where you left off.'}</p>
+          
+          {errorMsg && (
+            <div className="mt-4 rounded-lg bg-red-500/10 p-3 text-sm text-red-500 border border-red-500/20">
+              {errorMsg}
+            </div>
+          )}
+
           <form onSubmit={submit} className="mt-8 space-y-5">
-            {signup && <div><label className="label">Full name</label><div className="relative"><UserRound size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input required className="input !pl-10" placeholder="Alex Kim" /></div></div>}
-            <div><label className="label">Email address</label><div className="relative"><Mail size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input required type="email" className="input !pl-10" placeholder="you@example.com" /></div></div>
+            {signup && <div><label className="label">Full name</label><div className="relative"><UserRound size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input required value={name} onChange={e => setName(e.target.value)} className="input !pl-10" placeholder="Alex Kim" /></div></div>}
+            <div><label className="label">Email address</label><div className="relative"><Mail size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input required value={email} onChange={e => setEmail(e.target.value)} type="email" className="input !pl-10" placeholder="you@example.com" /></div></div>
             <div>
               <label className="label">Password</label>
               <div className="relative"><LockKeyhole size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input required value={password} onChange={e => setPassword(e.target.value)} type={show ? 'text' : 'password'} className="input !px-10" placeholder="Enter your password" /><button type="button" onClick={() => setShow(!show)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500">{show ? <EyeOff size={17} /> : <Eye size={17} />}</button></div>
@@ -49,7 +89,7 @@ export default function Auth({ signup = false }) {
             </div>
             {signup && <div><label className="label">Confirm password</label><input required type={show ? 'text' : 'password'} className="input" placeholder="Repeat your password" /></div>}
             {!signup && <div className="flex items-center justify-between text-xs"><label className="flex items-center gap-2 text-slate-400"><input type="checkbox" className="accent-indigo-500" />Remember me</label><a href="#" className="font-medium text-indigo-400 hover:text-indigo-300">Forgot password?</a></div>}
-            <button className="button-primary w-full !py-3.5">{signup ? 'Create free account' : 'Log in'}<ArrowRight size={17} /></button>
+            <button disabled={isSubmitting} className="button-primary w-full !py-3.5 disabled:opacity-50">{isSubmitting ? 'Please wait...' : (signup ? 'Create free account' : 'Log in')}<ArrowRight size={17} /></button>
           </form>
           <p className="mt-7 text-center text-sm text-slate-500">{signup ? 'Already have an account?' : 'New to StudySync?'} <Link to={signup ? '/login' : '/signup'} className="font-semibold text-indigo-400 hover:text-indigo-300">{signup ? 'Log in' : 'Create an account'}</Link></p>
         </motion.div>
