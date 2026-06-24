@@ -14,7 +14,7 @@ export function PageIntro({ eyebrow, title, description, action }) {
   )
 }
 
-export function StatCard({ icon: Icon, label, value, detail, color = 'indigo' }) {
+export function StatCard({ icon: Icon, label, value, detail, color = 'primary' }) {
   const shades = {
     primary: 'from-primary/20 text-primary',
     accent: 'from-accent/20 text-accent',
@@ -28,7 +28,7 @@ export function StatCard({ icon: Icon, label, value, detail, color = 'indigo' })
       </div>
       <p className="text-2xl font-bold tracking-tight text-white">{value}</p>
       <p className="mt-1 text-sm text-slate-400">{label}</p>
-      {detail && <p className="mt-3 text-xs font-medium text-emerald-400">{detail}</p>}
+      {detail && <p className="mt-3 text-xs font-medium text-success">{detail}</p>}
     </motion.div>
   )
 }
