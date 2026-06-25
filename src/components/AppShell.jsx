@@ -9,7 +9,6 @@ const nav = [
   { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
   { label: 'Ask Question', path: '/ask', icon: WandSparkles },
   { label: 'History', path: '/history', icon: History },
-  { label: 'Profile', path: '/profile', icon: UserRound },
 ]
 
 export default function AppShell() {

@@ -6,7 +6,7 @@ import Auth from './pages/Auth'
 import Dashboard from './pages/Dashboard'
 import HistoryPage from './pages/HistoryPage'
 import Landing from './pages/Landing'
-import Profile from './pages/Profile'
+
 import QuestionDetails from './pages/QuestionDetails'
 
 // Route Guard for authenticated pages
@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/ask" element={<AskQuestion />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/question/:id" element={<QuestionDetails />} />
-        <Route path="/profile" element={<Profile />} />
+
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
