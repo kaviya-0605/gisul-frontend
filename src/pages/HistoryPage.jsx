@@ -5,6 +5,7 @@ import {
   Filter,
   Search,
   SlidersHorizontal,
+  Trash2,
 } from "lucide-react";
 
 import { useEffect, useMemo, useState } from "react";
@@ -28,6 +29,17 @@ export default function HistoryPage() {
       setHistoryItems(res.data);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const deleteItem = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this question?")) return;
+    try {
+      await api.delete(`/history/${id}`);
+      setHistoryItems(prev => prev.filter(item => item.id !== id));
+    } catch (error) {
+      console.log(error);
+      alert("Failed to delete the item.");
     }
   };
 
@@ -174,17 +186,27 @@ export default function HistoryPage() {
                 </h3>
               </div>
 
-              <div className="w-full sm:w-44">
-                <p className="mb-2 text-[10px] uppercase tracking-wider text-slate-600">
-                  Best similarity
-                </p>
+              <div className="flex w-full items-start gap-4 sm:w-auto sm:min-w-44">
+                <div className="flex-1">
+                  <p className="mb-2 text-[10px] uppercase tracking-wider text-slate-600">
+                    Best similarity
+                  </p>
 
-                <Score
-                  value={
-                    item.similarQuestions?.[0]
-                      ?.score || 0
-                  }
-                />
+                  <Score
+                    value={
+                      item.similarQuestions?.[0]
+                        ?.score || 0
+                    }
+                  />
+                </div>
+
+                <button
+                  onClick={() => deleteItem(item.id)}
+                  className="mt-1 rounded-lg p-2 text-slate-500 transition hover:bg-red-500/10 hover:text-red-400"
+                  title="Delete"
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
             </div>
           </div>
