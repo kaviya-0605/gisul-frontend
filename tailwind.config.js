@@ -7,20 +7,20 @@ export default {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
       colors: {
-        ink: '#070b17', // Kept for legacy if any, but adding new ones
-        primary: '#2563EB',
-        secondary: '#7C3AED',
-        accent: '#06B6D4',
-        background: '#0F172A',
-        card: '#1E293B',
-        textColor: '#F8FAFC',
-        success: '#22C55E',
-        warning: '#F59E0B',
-        error: '#EF4444'
+        ink: '#070b17', 
+        primary: '#FFFFFF',     // White
+        secondary: '#A1A1AA',   // Zinc 400
+        accent: '#6366F1',      // Indigo 500
+        background: '#09090B',  // Zinc 950
+        card: '#18181B',        // Zinc 900
+        textColor: '#FAFAFA',   // Zinc 50
+        success: '#10B981',     // Emerald 500
+        warning: '#F59E0B',     // Amber 500
+        error: '#EF4444'        // Red 500
       },
       boxShadow: {
-        glow: '0 0 40px rgba(99, 102, 241, 0.25)',
-        'glow-primary': '0 0 40px rgba(37, 99, 235, 0.35)',
+        glow: '0 0 40px rgba(99, 102, 241, 0.15)',
+        'glow-primary': '0 0 40px rgba(255, 255, 255, 0.1)',
       },
     },
   },

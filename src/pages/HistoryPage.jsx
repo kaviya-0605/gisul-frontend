@@ -210,7 +210,7 @@ export default function HistoryPage() {
             <ChevronLeft size={16} />
           </button>
 
-          <button className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-textColor text-sm font-semibold">
+          <button className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-black text-sm font-semibold">
             1
           </button>
 

@@ -42,7 +42,7 @@ export default function AppShell() {
       </div>
       <div className="mt-auto p-3">
         {!collapsed && (
-          <div className="mb-3 rounded-2xl border border-indigo-500/15 bg-gradient-to-br from-indigo-500/10 to-violet-500/5 p-4">
+          <div className="mb-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
             <CircleHelp size={18} className="mb-3 text-indigo-300" />
             <p className="text-xs font-semibold">Need a study nudge?</p>
             <p className="mt-1 text-[11px] leading-5 text-slate-500">Explore examples in the question finder.</p>
@@ -59,11 +59,11 @@ export default function AppShell() {
   )
 
   return (
-    <div className="min-h-screen bg-[#080c18]">
-      <aside className={`fixed inset-y-0 left-0 z-40 hidden border-r border-white/[0.06] bg-[#0a0f1e]/95 backdrop-blur-xl transition-all lg:block ${collapsed ? 'w-20' : 'w-64'}`}>{sidebar}</aside>
-      <AnimatePresence>{mobile && <><motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobile(false)} className="fixed inset-0 z-40 bg-black/70 lg:hidden" /><motion.aside initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} className="fixed inset-y-0 left-0 z-50 w-64 border-r border-white/10 bg-[#0a0f1e] lg:hidden">{sidebar}</motion.aside></>}</AnimatePresence>
+    <div className="min-h-screen bg-background">
+      <aside className={`fixed inset-y-0 left-0 z-40 hidden border-r border-white/[0.06] bg-card/95 backdrop-blur-xl transition-all lg:block ${collapsed ? 'w-20' : 'w-64'}`}>{sidebar}</aside>
+      <AnimatePresence>{mobile && <><motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobile(false)} className="fixed inset-0 z-40 bg-black/70 lg:hidden" /><motion.aside initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} className="fixed inset-y-0 left-0 z-50 w-64 border-r border-white/10 bg-card lg:hidden">{sidebar}</motion.aside></>}</AnimatePresence>
       <div className={`transition-all ${collapsed ? 'lg:pl-20' : 'lg:pl-64'}`}>
-        <header className="sticky top-0 z-30 flex h-20 items-center gap-4 border-b border-white/[0.06] bg-[#080c18]/80 px-5 backdrop-blur-xl lg:px-8">
+        <header className="sticky top-0 z-30 flex h-20 items-center gap-4 border-b border-white/[0.06] bg-background/80 px-5 backdrop-blur-xl lg:px-8">
           <button onClick={() => setMobile(true)} className="p-2 text-slate-300 lg:hidden"><Menu /></button>
           <div className="relative hidden max-w-md flex-1 sm:block">
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
@@ -73,7 +73,7 @@ export default function AppShell() {
           <div className="ml-auto flex items-center gap-3">
             <button className="relative rounded-xl border border-white/[0.08] bg-white/[0.04] p-2.5 text-slate-400 hover:text-white"><Bell size={18} /><span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-indigo-400" /></button>
             <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-600 text-sm font-bold">
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-white text-sm font-bold text-black">
                 {user?.name ? user.name.substring(0, 2).toUpperCase() : 'AK'}
               </div>
               <div className="hidden sm:block">

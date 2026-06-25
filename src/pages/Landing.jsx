@@ -21,9 +21,9 @@ const steps = [
 function DemoCard() {
   return (
     <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .8 }} className="relative mx-auto w-full max-w-xl">
-      <div className="absolute -inset-8 rounded-full bg-indigo-500/15 blur-3xl" />
+      <div className="absolute -inset-8 rounded-full bg-white/[0.03] blur-3xl" />
       <div className="glass relative overflow-hidden rounded-[28px] border-white/15 p-3 shadow-2xl shadow-indigo-950/50">
-        <div className="rounded-2xl border border-white/[0.07] bg-[#0b1020] p-5 sm:p-6">
+        <div className="rounded-2xl border border-white/[0.07] bg-card p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between">
             <div className="flex gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-red-400/70" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" /></div>
             <span className="rounded-full bg-indigo-500/10 px-2.5 py-1 text-[10px] text-indigo-300">AI question finder</span>
@@ -31,7 +31,7 @@ function DemoCard() {
           <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
             <p className="text-xs text-slate-500">Your question</p>
             <p className="mt-2 text-sm font-medium">Why does photosynthesis need sunlight?</p>
-            <div className="mt-4 flex justify-end"><span className="rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-3 py-2 text-[11px] font-semibold">Find matches <ArrowRight size={11} className="ml-1 inline" /></span></div>
+            <div className="mt-4 flex justify-end"><span className="rounded-lg bg-primary text-black px-3 py-2 text-[11px] font-semibold">Find matches <ArrowRight size={11} className="ml-1 inline" /></span></div>
           </div>
           <div className="my-5 flex items-center gap-3"><div className="h-px flex-1 bg-white/[0.06]" /><span className="text-[10px] uppercase tracking-widest text-slate-600">3 matches found</span><div className="h-px flex-1 bg-white/[0.06]" /></div>
           {[
@@ -40,7 +40,7 @@ function DemoCard() {
             ['Can plants grow without direct sunlight?', '87%'],
           ].map(([question, score], i) => (
             <motion.div key={question} animate={{ y: [0, -3, 0] }} transition={{ duration: 4, delay: i * .5, repeat: Infinity }} className="mb-2.5 flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] p-3.5">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-indigo-500/10 text-xs font-semibold text-indigo-300">0{i + 1}</span>
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/10 text-xs font-semibold text-white">0{i + 1}</span>
               <p className="flex-1 text-xs text-slate-300">{question}</p>
               <span className="text-xs font-semibold text-cyan-300">{score}</span>
             </motion.div>
@@ -58,8 +58,8 @@ export default function Landing() {
       <PublicNav />
       <main>
         <section className="grid-noise relative flex min-h-screen items-center pt-24">
-          <div className="absolute left-[8%] top-32 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
-          <div className="absolute right-[8%] top-48 h-72 w-72 rounded-full bg-violet-600/10 blur-3xl" />
+          <div className="absolute left-[8%] top-32 h-64 w-64 rounded-full bg-white/[0.02] blur-3xl" />
+          <div className="absolute right-[8%] top-48 h-72 w-72 rounded-full bg-white/[0.02] blur-3xl" />
           <div className="mx-auto grid max-w-7xl items-center gap-16 px-5 py-20 lg:grid-cols-2 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}>
               <span className="eyebrow mb-6"><Sparkles size={13} />Your AI-powered learning copilot</span>
@@ -88,7 +88,7 @@ export default function Landing() {
         <section id="features" className="mx-auto max-w-7xl px-5 py-28 lg:px-8">
           <div className="mx-auto mb-14 max-w-2xl text-center"><span className="eyebrow mb-4">Built to help you learn</span><h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Everything you need to study <span className="gradient-text">more intelligently</span></h2><p className="mt-5 text-slate-400">Turn scattered questions into a connected, searchable learning system.</p></div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {features.map(({ icon: Icon, title, text }, i) => <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * .1 }} viewport={{ once: true }} className="glass glass-hover group rounded-2xl p-6"><div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-violet-500/5 text-indigo-300 transition group-hover:scale-110"><Icon size={21} /></div><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{text}</p></motion.div>)}
+            {features.map(({ icon: Icon, title, text }, i) => <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * .1 }} viewport={{ once: true }} className="glass glass-hover group rounded-2xl p-6"><div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-white transition group-hover:scale-110"><Icon size={21} /></div><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{text}</p></motion.div>)}
           </div>
         </section>
 
@@ -96,8 +96,8 @@ export default function Landing() {
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="mb-16 max-w-2xl"><span className="eyebrow mb-4">A simple workflow</span><h2 className="text-3xl font-bold tracking-tight sm:text-5xl">From question to clarity in <span className="gradient-text">seconds</span></h2></div>
             <div className="relative grid gap-5 md:grid-cols-4">
-              <div className="absolute left-[12%] right-[12%] top-7 hidden h-px bg-gradient-to-r from-blue-500/20 via-indigo-400/60 to-violet-500/20 md:block" />
-              {steps.map(([n, title, text], i) => <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * .12 }} viewport={{ once: true }} className="relative"><div className="relative z-10 mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-indigo-400/30 bg-[#10162a] text-sm font-bold text-indigo-300 shadow-lg shadow-indigo-950">{n}</div><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{text}</p></motion.div>)}
+              <div className="absolute left-[12%] right-[12%] top-7 hidden h-px bg-gradient-to-r from-transparent via-white/20 to-transparent md:block" />
+              {steps.map(([n, title, text], i) => <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * .12 }} viewport={{ once: true }} className="relative"><div className="relative z-10 mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/5 text-sm font-bold text-white shadow-lg shadow-black/50">{n}</div><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{text}</p></motion.div>)}
             </div>
           </div>
         </section>
@@ -109,13 +109,13 @@ export default function Landing() {
               ['“StudySync turns one question into an entire study path. It feels like having a tutor who already knows what I need next.”', 'Maya Chen', 'Biology student'],
               ['“The similarity scores make research so much faster. I find useful variations I would never have thought to search.”', 'Jordan Lee', 'Engineering student'],
               ['“Finally, my questions are not lost across notebooks and tabs. The history view alone has changed how I revise.”', 'Sofia Patel', 'Computer science student'],
-            ].map(([quote, name, role]) => <div key={name} className="glass glass-hover rounded-2xl p-6"><Quote size={23} className="mb-5 text-indigo-400" /><p className="text-sm leading-7 text-slate-300">{quote}</p><div className="mt-6 flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-cyan-400 to-indigo-600 text-xs font-bold">{name.split(' ').map(x => x[0]).join('')}</div><div><p className="text-sm font-semibold">{name}</p><p className="text-xs text-slate-500">{role}</p></div></div></div>)}
+            ].map(([quote, name, role]) => <div key={name} className="glass glass-hover rounded-2xl p-6"><Quote size={23} className="mb-5 text-white/50" /><p className="text-sm leading-7 text-slate-300">{quote}</p><div className="mt-6 flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-full bg-white text-black text-xs font-bold">{name.split(' ').map(x => x[0]).join('')}</div><div><p className="text-sm font-semibold">{name}</p><p className="text-xs text-slate-500">{role}</p></div></div></div>)}
           </div>
         </section>
 
         <section className="mx-auto max-w-7xl px-5 pb-28 lg:px-8">
-          <div className="relative overflow-hidden rounded-[32px] border border-indigo-400/20 bg-gradient-to-br from-blue-600/25 via-indigo-600/20 to-violet-600/25 px-6 py-16 text-center shadow-2xl shadow-indigo-950/40 sm:px-12">
-            <div className="absolute inset-0 grid-noise opacity-60" /><div className="relative"><MessageCircleQuestion className="mx-auto mb-5 text-indigo-300" size={38} /><h2 className="text-3xl font-bold sm:text-5xl">Your next breakthrough starts with a question.</h2><p className="mx-auto mt-4 max-w-xl text-slate-300">Join thousands of students connecting ideas and learning with more confidence.</p><Link to="/signup" className="button-primary mt-8 !bg-white !bg-none !px-6 !py-3.5 !text-indigo-700">Start learning free <ArrowRight size={17} /></Link></div>
+          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.02] px-6 py-16 text-center shadow-2xl shadow-black/40 sm:px-12">
+            <div className="absolute inset-0 grid-noise opacity-30" /><div className="relative"><MessageCircleQuestion className="mx-auto mb-5 text-white" size={38} /><h2 className="text-3xl font-bold sm:text-5xl">Your next breakthrough starts with a question.</h2><p className="mx-auto mt-4 max-w-xl text-slate-400">Join thousands of students connecting ideas and learning with more confidence.</p><Link to="/signup" className="button-primary mt-8 !bg-white !px-6 !py-3.5 !text-black">Start learning free <ArrowRight size={17} /></Link></div>
           </div>
         </section>
       </main>

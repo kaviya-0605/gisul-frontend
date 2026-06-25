@@ -4,26 +4,24 @@
 @tailwind utilities;
 
 @layer base {
-  * { @apply border-white/10; }
+  * { @apply border-white/[0.08]; }
   html { scroll-behavior: smooth; }
   body {
     @apply m-0 min-w-[320px] bg-background font-sans text-textColor antialiased;
-    background-image:
-      radial-gradient(circle at 12% 5%, rgba(37,99,235,.15), transparent 28%),
-      radial-gradient(circle at 88% 18%, rgba(124,58,237,.15), transparent 25%);
+    background-image: radial-gradient(circle at 50% 0%, rgba(99,102,241,.08), transparent 40%);
   }
-  ::selection { @apply bg-primary/40 text-textColor; }
+  ::selection { @apply bg-accent/30 text-textColor; }
 }
 
 @layer components {
-  .glass { @apply border border-white/5 bg-card/80 backdrop-blur-xl; }
-  .glass-hover { @apply transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-card/90 hover:shadow-glow-primary; }
-  .gradient-text { @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent; }
-  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-5 py-3 text-sm font-semibold text-textColor shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 hover:shadow-primary/40; }
-  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-textColor transition hover:bg-white/10; }
-  .input { @apply w-full rounded-xl border border-white/10 bg-background/50 px-4 py-3 text-sm text-textColor outline-none transition placeholder:text-slate-500 focus:border-primary/60 focus:ring-4 focus:ring-primary/10; }
-  .label { @apply mb-2 block text-sm font-medium text-textColor/80; }
-  .eyebrow { @apply inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent; }
+  .glass { @apply border border-white/[0.06] bg-card/60 backdrop-blur-2xl; }
+  .glass-hover { @apply transition duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-card/80 hover:shadow-glow-primary; }
+  .gradient-text { @apply text-textColor; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-black shadow-lg shadow-white/5 transition hover:-translate-y-0.5 hover:bg-white/90; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-textColor transition hover:bg-white/[0.08]; }
+  .input { @apply w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-textColor outline-none transition placeholder:text-slate-500 focus:border-accent/50 focus:ring-4 focus:ring-accent/10; }
+  .label { @apply mb-2 block text-sm font-medium text-secondary; }
+  .eyebrow { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-secondary tracking-wide uppercase; }
 }
 
 .grid-noise {

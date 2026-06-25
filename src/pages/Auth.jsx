@@ -13,7 +13,7 @@ function AuthVisual({ signup }) {
       <Logo />
       <div className="relative mx-auto max-w-md">
         <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity }} className="glass mb-8 rounded-3xl p-7 shadow-2xl shadow-primary/10">
-          <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-secondary"><BrainCircuit /></div>
+          <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-white text-black"><BrainCircuit /></div>
           <div className="space-y-3">{['Understand every question', 'Find meaningful connections', 'Build lasting knowledge'].map((x, i) => <div key={x} className="flex items-center gap-3 rounded-xl bg-white/[0.04] p-3 text-sm text-textColor/80"><span className="grid h-6 w-6 place-items-center rounded-full bg-success/10 text-success"><Check size={13} /></span>{x}<span className="ml-auto text-xs text-textColor/50">0{i + 1}</span></div>)}</div>
         </motion.div>
         <h1 className="text-4xl font-bold leading-tight">{signup ? 'Turn curiosity into your greatest advantage.' : 'Welcome back to smarter learning.'}</h1>

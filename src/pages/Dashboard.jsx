@@ -74,7 +74,7 @@ export default function Dashboard() {
         description="Track your learning journey and explore previously asked questions."
       />
 
-      <div className="relative mb-6 overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/30 via-accent/20 to-secondary/20 p-6 sm:p-8">
+      <div className="relative mb-6 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
 
         <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 opacity-20 sm:block">
           <BrainCircuit size={150} />
